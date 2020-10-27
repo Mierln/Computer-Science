@@ -46,7 +46,7 @@ def ask():
 
 
 
-def menu():
+def main_menu():
     print("Tugas Compsci by Dylan 11F")
     print("Menu: Factorial (1) or Fibonacci (2)")
     try:
@@ -60,15 +60,4 @@ def menu():
     except:
         print("Invalid, must be 1 or 2!")
 
-menu()
-
-
-
-
-
-
-
-
-
-
-
+main_menu()
