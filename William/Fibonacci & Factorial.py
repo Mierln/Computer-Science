@@ -1,5 +1,5 @@
 
-def main():
+def menu():
     print("Factorial and Fibonacci Sequence Generator \n\n")
 
 
@@ -92,4 +92,4 @@ def fibonacci_sequence():
         except ValueError:
             print("Enter a number, Try Again!\n")
 
-main()
+menu()
