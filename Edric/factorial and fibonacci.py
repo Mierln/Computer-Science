@@ -1,7 +1,3 @@
- -Task 1-
-Hello William was Here
-
-
 # Edric Factorial Python
 
 number = int(input("factorial of? "))
@@ -25,8 +21,6 @@ The factorial of""")
 if number == 0:
     print("Factorial of 0 is 1")
 
-
- -Task 2-
 
 # Edric Fibonacci sequence
 try:
