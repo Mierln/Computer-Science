@@ -7,7 +7,12 @@ def menu():
 
         #Validation
         try:
-            mode = int(input("For factorial type 1, fibonacci type 2, to stop type 0: "))
+            print("MENU")
+            print("1. Factorial")
+            print("2. Fibonacci")
+            print("3. Quit")
+
+            mode = int(input("Go to [1 - 3]: "))
 
             if mode == 1: #Factorial
                factorial()
@@ -16,7 +21,7 @@ def menu():
             elif mode == 2: #Fibonacci
                fibonacci_sequence()
 
-            elif mode == 0: #Stop
+            elif mode == 3: #Stop
                 break
 
             #Error (Wrong Number)
