@@ -12,11 +12,7 @@ if number > 0:
         result = result * (x - 1)
         a += 1
         x -= 1
-    print("""
-The factorial of""")
-    print(number)
-    print("is")
-    print(result)
+    print(f"The factorial of {number} is {result}")
 
 if number == 0:
     print("Factorial of 0 is 1")
