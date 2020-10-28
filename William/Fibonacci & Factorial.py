@@ -11,7 +11,7 @@ def menu():
             print("1. Factorial")
             print("2. Fibonacci")
             print("3. Quit")
-
+            
             mode = int(input("Go to [1 - 3]: "))
 
             if mode == 1: #Factorial
