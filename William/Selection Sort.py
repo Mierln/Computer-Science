@@ -42,6 +42,7 @@ def main():
     print ("=== Start Sorting ===")
     selection_sort(my_numbers)
     print ("=== Finished Sorting ===\n")
+    print(f"Result {my_numbers} \n\n")
 
 
 
