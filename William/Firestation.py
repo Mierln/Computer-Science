@@ -6,7 +6,7 @@ station_on_duty = ""
 min = personnel[0]
 understaffed = ""
 input_device = ""
-x = 0
+csgo = 0
 
 for i in range(7):
     fire_duty.append(fire_station[i])
@@ -20,19 +20,19 @@ i = 0
 while i < 52:
     input_device = input("true / false: ")
     if input_device == "true":
-        if x < 7:
-            station_on_duty = fire_duty[x]
+        if csgo < 7:
+            station_on_duty = fire_duty[csgo]
             if station_on_duty == understaffed:
                 print("this station is understaffed")
             print(station_on_duty)
-            x += 1
+            csgo += 1
         else:
-            x = 0
-            station_on_duty = fire_duty[x]
+            csgo = 0
+            station_on_duty = fire_duty[csgo]
             if station_on_duty == understaffed:
                 print("this station is understaffed")
             print(station_on_duty)
-            x += 1
+            csgo += 1
 
     elif input_device == "false":
         i = 53
