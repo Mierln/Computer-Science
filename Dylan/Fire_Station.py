@@ -3,7 +3,8 @@ fire_stations = ["Alpha", "Beta", "Theta",
 personnel = [12,13,23,44,23,11,42]
 fire_duty = []
 station_on_duty = ""
-m = 0
+a = 0
+i = 0
 min = personnel[0]
 understaffed = ""
 input_device = ""
@@ -15,21 +16,22 @@ for m in range(7):
     if min >= personnel[m]:
         min = personnel[m]
         understaffed = fire_stations[m]
-i = 0
 while i < 52:
     input_device = input("Input true or false: ")
     if input_device == "true":
-        if fire_duty:
-            station_on_duty = fire_duty[m]
+        if a < 7:
+            station_on_duty = fire_duty[a]
             if station_on_duty == understaffed:
                 print("This station is understaffed")
             print(station_on_duty)
+            a += 1
         else:
-            fire_duty
-            station_on_duty = fire_duty[m]
+            a = 0
+            station_on_duty = fire_duty[a]
             if station_on_duty == understaffed:
                 print("This station is understaffed")
             print(station_on_duty)
+            a += 1
     elif input_device == "false":
         i = 53
         print("Emergency stop of procedure")
