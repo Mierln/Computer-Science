@@ -1,7 +1,7 @@
 
 #Selection Sort Python Program
 import random
-
+import time
 
 #Create Random Numbers
 def random_numbers(amount):
@@ -27,7 +27,9 @@ def selection_sort(my_numbers):
                 min_number = new_number[i]
                 new_number[all], new_number[i] = new_number[i], new_number[all]
 
+        time.sleep(.3)
         print(new_number)
+
 
     return(new_number)
 
