@@ -29,9 +29,9 @@ def show_containers(container):
     print(f"Container 5: {revcon5}\n")              # Printing Container 5
 
     print("Objective:\n",
-        "1. Sherlock Holmes     --> Bottom of Container 4\n",
-        "2. The Stranger        --> Top of Container 2\n",
-        "3. The Lost Necklace   --> Bottom of Container 1")
+        "1. Sherlock Holmes    --> Bottom of Container 4\n",
+        "2. The Stranger       --> Top of Container 2\n",
+        "3. The Lost Necklace  --> Bottom of Container 1")
 
 
 
