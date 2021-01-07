@@ -63,6 +63,7 @@ def complete(container):
     # Main Function
 def main():
 
+    counter = 0
     while True:                                                             # Infinite Loop
         print("\n")
         show_containers(container)                                          # Showing Current Container
@@ -90,10 +91,12 @@ def main():
                 print("INVALID CONTAINER NUMBER")
         
         mover(container, origin, destination)                               # If Origin and Destination is valid then call the mover function
+        counter += 1
 
         if complete(container):                                             # Call the complete function to check if objective is achived
             print("SUCCESS ALL BOOKS ARE IN THE CORRECT PLACES")
-            show_containers(container)          
+            show_containers(container)      
+            print(f"Done in {counter} moves")    
             break                                                           # If objectives has been achived, break the infinite loop
 
 
