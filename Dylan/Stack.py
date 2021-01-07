@@ -15,13 +15,23 @@ def container():
         print(f"Container 5: {cn[4]}")
 
 def game():
-    print("Where's My Sherlock Holmes")
+    print("\nWhere's My Sherlock Holmes")
     while a == True:
         print("\n")
         container()
+
         move_book = int(input("\n Select a container to move the book (Number): "))
+        if len(cn[move_book - 1]) < 1:
+            print("\nThat container is empty!")
+            game()
+
         move_container = int(input(" Select the container to be moved to (Number): "))
-        move(move_book, move_container)
+        if len(cn[move_container - 1]) == 3:
+            print("\nThat container is full!")
+            game()
+
+        else:
+            move(move_book, move_container)
 
 def move(book, container):
     cn[container - 1].append(cn[book - 1][-1])
