@@ -94,8 +94,7 @@ def main():
         counter += 1
 
         if complete(container):                                             # Call the complete function to check if objective is achived
-            print("SUCCESS ALL BOOKS ARE IN THE CORRECT PLACES")
-            show_containers(container)      
+            print("SUCCESS ALL BOOKS ARE IN THE CORRECT PLACES")  
             print(f"Done in {counter} moves")    
             break                                                           # If objectives has been achived, break the infinite loop
 
