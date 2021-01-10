@@ -1,4 +1,5 @@
 # Where is my Sherlock Holmes project
+import random
 
     # 5 Container (from Bottom to Top)
 container = [["In The Deep Blue Ocean","The Stranger","Polly wants a cracker"],                     # Reversed Container 1
@@ -62,6 +63,9 @@ def complete(container):
 
     # Main Function
 def main():
+    for i in range(len(container)):
+        random.shuffle(container[i])
+    random.shuffle(container)
 
     counter = 0
     while True:                                                             # Infinite Loop
