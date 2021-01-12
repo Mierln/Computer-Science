@@ -1,5 +1,9 @@
 # Where is my Sherlock Holmes project
+import pip
+pip.main(['install', 'tabulate'])
+
 import random
+from tabulate import tabulate
 
     # 5 Container (from Bottom to Top)
 container = [["In The Deep Blue Ocean","The Stranger","Polly wants a cracker"],                     # Reversed Container 1
@@ -13,26 +17,39 @@ container = [["In The Deep Blue Ocean","The Stranger","Polly wants a cracker"], 
     # Reverse the Container (to make it from top to bottom)
 def show_containers(container):
 
-    revcon1 = ", ".join(container[0][::-1])         # Container 1
-    revcon2 = ", ".join(container[1][::-1])         # Container 2
-    revcon3 = ", ".join(container[2][::-1])         # Container 3
-    revcon4 = ", ".join(container[3][::-1])         # Container 4
-    revcon5 = ", ".join(container[4][::-1])         # Container 5
+    p_container = [[1,2,3,4,5],
+                   [1,2,3,4,5],
+                   [1,2,3,4,5]] 
 
-        # Printing the Containers + Objective
-    print("Here are the containers books are in sequential order from top to bottom\n")
+    for i in range(5):
+        if len(container[i]) == 3:
+            p_container[2][i] = container[i][0]
+            p_container[1][i] = container[i][1]
+            p_container[0][i] = container[i][2]
+        
+        elif len(container[i]) == 2:
+            p_container[2][i] = container[i][0]
+            p_container[1][i] = container[i][1]
+            p_container[0][i] = ""
 
-    print(f"Container 1: {revcon1}")                # Printing Container 1
-    print(f"Container 2: {revcon2}")                # Printing Container 2
-    print(f"Container 3: {revcon3}")                # Printing Container 3
-    print(f"Container 4: {revcon4}")                # Printing Container 4
-    print(f"Container 5: {revcon5}\n")              # Printing Container 5
+        elif len(container[i]) == 1:
+            p_container[2][i] = container[i][0]
+            p_container[1][i] = ""
+            p_container[0][i] = ""
 
-    print("Objective:\n",
-        "1. Sherlock Holmes    --> Bottom of Container 4\n",
-        "2. The Stranger       --> Top of Container 2\n",
-        "3. The Lost Necklace  --> Bottom of Container 1")
+        elif len(container[i]) == 0:
+            p_container[2][i] = ""
+            p_container[1][i] = ""
+            p_container[0][i] = ""
+            pass
 
+    p_header = ["Container 1", "Container 2", "Container 3", "Container 4", "Container 5"]
+
+    print(tabulate(p_container, headers = p_header))
+    print("\nObjective:\n",
+        "1. Sherlock Holmes --> Bottom of Container 4\n",
+        "2. The Stranger--> Top of Container 2\n",
+        "3. The Lost Necklace --> Bottom of Container 1")
 
 
 
@@ -63,10 +80,6 @@ def complete(container):
 
     # Main Function
 def main():
-    for i in range(len(container)):
-        random.shuffle(container[i])
-    random.shuffle(container)
-
     counter = 0
     while True:                                                             # Infinite Loop
         print("\n")
