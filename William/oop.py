@@ -9,7 +9,7 @@ class Person:
         self.gender = gender
         self.phone = phone
 
-    def show_id(self):
+    def __str__(self):
         return (f"Name : {self.name}\nAge : {self.age}\nGender : {self.gender}\n")
 
 class Operations:
@@ -37,7 +37,7 @@ class Operations:
 
         for i in range(len(MEMBER)):
             if find_phone == MEMBER[i].phone:
-                print(MEMBER[i].show_id())
+                print(MEMBER[i])
                 break
 
         else:
@@ -53,18 +53,17 @@ class Display:
 
     @staticmethod
     def menus():
-        print("1. Add new member")
+        print("\n1. Add new member")
         print("2. Show member ID")
-        print("3. Change ID")
-        print("4. Quit")
+        print("3. Quit")
 
     @staticmethod
     def main_menu():
         print("\n" * 100)
-        Display.menus()
         member = []
 
         while True:
+            Display.menus()
             choosen = (input("\nChoose a process: "))
             
             if int(choosen) == 1:
@@ -74,9 +73,6 @@ class Display:
                 Operations.show_id()
 
             elif int(choosen) == 3:
-                pass
-
-            elif int(choosen) == 4:
                 break
 
             else:
