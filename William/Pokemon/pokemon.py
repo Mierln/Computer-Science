@@ -4,9 +4,10 @@ import dialogue
 import time
 
 pokemon_names = ["Pikachu", "Eevee", "Pliplup", "Snorlax", "Ditto", "Gengar", "Charmander", "Bulbasaur", "Gyarados",
-                 "Fletchling", "Arceus", "Psyduck", "Lopunny", "Victiny", "Buble", "Mierln"]
+                 "Fletchling", "Arceus", "Psyduck", "Lopunny", "Victiny", "Buble", "Mierln", "Huwahh"]
 pokemon_attacks = ["Tackle", "Scratch", "Growl", "Fire breath", "Head bang", "Water Gun", "Stomp", "Thunder Strike",
-                   "Splash Hit", "Fireball", "Vine Snap", "Forest Voice", "Wind Tunnel", "Slap", "Punch", "Baked Alive"]
+                   "Splash Hit", "Fireball", "Vine Snap", "Forest Voice", "Wind Tunnel", "Slap", "Punch", "Baked Alive",
+                   "Close-Up"]
 pokemon_type = ["Fire", "Water", "Electric", "Grass"]
 
 
@@ -394,21 +395,23 @@ def main():
             elif goto == 2:
                 player.show_pokemons(True)
             elif goto == 3:
-                print(" Market ".center(50, "="))
-                print(f"My Gold: {player.money}")
-                print("")
-                print("1. Pokeballs - 200 Golds")
-                print("2. Potions - 50 Golds")
-                print("3. Quit")
                 while True:
+                    print(" Market ".center(50, "="))
+                    print(f"My Gold: {player.money}")
+                    print("")
+                    print("1. Pokeballs - 200 Golds")
+                    print("2. Potions - 50 Golds")
+                    print("3. Quit")
                     try:
                         buy = int(input("Buy? "))
                         if buy == 1:
                             print(Fore.CYAN + "\nYou have bought 1 pokeball for 200 golds\n" + Fore.RESET)
                             player.pokeball += 1
+                            player.money -= 200
                         elif buy == 2:
                             print(Fore.CYAN + "\nYou have bought 1 potion for 50 golds\n" + Fore.RESET)
                             player.potions += 1
+                            player.money -= 50
                         elif buy == 3:
                             break
                         else:
