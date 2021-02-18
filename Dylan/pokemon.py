@@ -700,7 +700,7 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                             type("Critical Damage!\n")
                         if random.randint(1, 100) < mc_poke.moves[move - 1].accuracy:
                             eff = effective(mc_poke, enemy_poke, move)
-                            damage = round((mc_poke.lvl + mc_poke.atk + mc_poke.moves[move - 1].power - enemy_poke.defn) / 6 * crit * eff)
+                            damage = round((mc_poke.lvl + mc_poke.atk + mc_poke.moves[move - 1].power - (enemy_poke.defn - 30)) / 6 * crit * eff)
                             enemy_poke.hp = enemy_poke.hp - damage
                             type(f"{mc_poke.name} did {damage} damage!\n")
                             if enemy_poke.hp <= 0:
@@ -859,7 +859,7 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                 type("Enemy Critical Damage!\n")
             if random.randint(1, 100) < enemy_poke.moves[abc].accuracy:
                 effec = effective(enemy_poke, mc_poke, abc)
-                damag = round((enemy_poke.lvl + enemy_poke.atk + enemy_poke.moves[abc].power - mc_poke.defn) / 6 * crit * effec)
+                damag = round((enemy_poke.lvl + enemy_poke.atk + enemy_poke.moves[abc].power - (mc_poke.defn - 35)) / 6 * crit * effec)
                 mc_poke.hp = mc_poke.hp - damag
                 type(f"Enemy {enemy_poke.name} did {damag} damage!\n")
             if mc_poke.hp <= 0:
