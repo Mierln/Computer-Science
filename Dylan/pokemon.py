@@ -628,7 +628,7 @@ def type(text):
     for letter in text:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.05)
+        time.sleep(0)
     print()
 
 
@@ -714,7 +714,7 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                                     type(f"Congratulations, {mc_poke.name} leveled up to level {mc_poke.lvl}\n")
                                 try:
                                     enemy_poke = enemy.pokemon[bruh + 1]
-                                    type(f"{enemy_poke} come out!\n")
+                                    type(f"{enemy_poke.name} come out!\n")
                                     bruh += 1
                                 except IndexError:
                                     fight = False
@@ -770,8 +770,8 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                                     if rando == 1:
                                         type(f"You successfully captured a wild {enemy_poke.name}")
                                         player.pokemon.append(enemy.pokemon[0])
-                                        return
                                         fight = False
+                                        return
                                     else:
                                         type(f"{enemy_poke.name} broke free!")
                                         what_to_do = False
@@ -780,8 +780,8 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                                     if rand == 1:
                                         type(f"You successfully captured a wild {enemy_poke.name}")
                                         player.pokemon.append(enemy.pokemon[0])
-                                        return
                                         fight = False
+                                        return
                                     else:
                                         type(f"{enemy_poke.name} broke free!")
                                         what_to_do = False
@@ -906,12 +906,14 @@ def levelup(poke):
             poke.name = "Ivysaur"
             poke.moves.append(razorleaf)
             type(f"{poke.name} Learned {razorleaf.name}\n")
+    if poke.name == "Ivysaur":
         if poke.lvl == 32:
             type(f"What? {poke.name} is evolving!\n")
             type(f"Congratulations, {poke.name} evolved into Venusaur!\n")
             poke.name = "Venusaur"
             poke.moves.append(venoshock)
             type(f"{poke.name} Learned {venoshock.name}\n")
+    if poke.name == "Venusaur":
         if poke.lvl == 55:
             poke.moves.append(solarbeam)
             type(f"{poke.name} Learned {solarbeam.name}\n")
@@ -926,12 +928,14 @@ def levelup(poke):
             poke.name = "Charmeleon"
             poke.moves.append(dragonbreath)
             type(f"{poke.name} Learned {dragonbreath.name}\n")
+    if poke.name == "Charmeleon":
         if poke.lvl == 32:
             type(f"What? {poke.name} is evolving!\n")
             type(f"Congratulations, {poke.name} evolved into Charizard!\n")
             poke.name = "Charizard"
             poke.moves.append(flamethrower)
             type(f"{poke.name} Learned {flamethrower.name}\n")
+    if poke.name == "Charizard":
         if poke.lvl == 55:
             poke.moves.append(inferno)
             type(f"{poke.name} Learned {inferno.name}\n")
@@ -946,12 +950,14 @@ def levelup(poke):
             poke.name = "Wartortle"
             poke.moves.append(waterpulse)
             type(f"{poke.name} Learned {waterpulse.name}\n")
+    if poke.name == "Wartotle":
         if poke.lvl == 32:
             type(f"What? {poke.name} is evolving!\n")
             type(f"Congratulations, {poke.name} evolved into Blastoise!\n")
             poke.name = "Blastoise"
             poke.moves.append(aquatail)
             type(f"{poke.name} Learned {aquatail.name}\n")
+    if poke.name == "Blastoise":
         if poke.lvl == 55:
             poke.moves.append(hydropump)
             type(f"{poke.name} Learned {hydropump.name}\n")
@@ -966,6 +972,7 @@ def levelup(poke):
             poke.name = "Pidgeotto"
             poke.moves.append(wingattack)
             type(f"{poke.name} Learned {wingattack.name}\n")
+    if poke.name == "Pidgeotto":
         if poke.lvl == 36:
             type(f"What? {poke.name} is evolving!\n")
             type(f"Congratulations, {poke.name} evolved into Pidgeot!\n")
@@ -1001,6 +1008,7 @@ def levelup(poke):
             poke.name = "Gardevoir"
             poke.moves.append(psychic)
             type(f"{poke.name} Learned {psychic.name}\n")
+    if poke.name == "Gardevoir":
         if poke.lvl == 55:
             poke.moves.append(futuresight)
             type(f"{poke.name} Learned {futuresight.name}\n")
@@ -1012,6 +1020,7 @@ def levelup(poke):
             poke.name = "Magneton"
             poke.moves.append(flashcannon)
             type(f"{poke.name} Learned {flashcannon.name}\n")
+    if poke.name == "Magneton":
         if poke.lvl == 55:
             poke.moves.append(zapcannon)
             type(f"{poke.name} Learned {zapcannon.name}\n")
@@ -1022,6 +1031,7 @@ def levelup(poke):
             poke.name = "Weezing"
             poke.moves.append(assurance)
             type(f"{poke.name} Learned {assurance.name}\n")
+    if poke.name == "Weezing":
         if poke.lvl == 55:
             poke.moves.append(belch)
             type(f"{poke.name} Learned {belch.name}\n")
@@ -1036,7 +1046,8 @@ def levelup(poke):
             poke.moves.append(outrage)
             type(f"{poke.name} Learned {outrage.name}\n")
     if poke.name == "Articuno":
-        pass
+        if poke.lvl == 60:
+            poke.moves.append(blizzard)
 
 
 def effective(move, second_poke, numb):
@@ -1245,6 +1256,7 @@ def game(name):
         type("Ash: Yay!, I Won, It's okay, I'll heal your Pokemon!\n")
         type("...\n")
     if win_or_lose == "Win":
+        player.money = player.money + 150
         type("Ash: Aww.. I Lost, I'll heal your Pokemon!\n")
         player.pokemon[0].hp = player.pokemon[0].maxhp
 
@@ -1271,6 +1283,7 @@ def game(name):
     while loopy:
         win_or_lose_grunt = battle("Team Rocket Grunt", grunt_noob, "trainer", 10, 200)
         if win_or_lose_grunt == "Win":
+            player.money = player.money + 200
             type(f"{name}: Return his Pokemon!\n")
             type("Team Rocket Grunt: Okay, okay fine you win this time! But Team Rocket will get you one day!")
             type("???: Thankyou kind sir, what's your name?\n")
@@ -1302,109 +1315,119 @@ def main(name):
     type(f"Ash: You just arrived? Okay then I'll head to the next city, better catch up!\n")
     first = True
     while first:
-        type("(1). Route 101")
-        type("(2). PokeCenter")
-        type("(3). PokeMart")
-        type("(4). Gym *Recommended Level 15*")
-        type("(5). View Pokemon")
-        type("(6). View Backpack")
-        where = int(input("Where Should I Go? "))
         try:
-            if where > 0 and where < 7:
-                if where == 1:
-                    wild_random = random.randint(1,10)
-                    if wild_random == 10:
-                        pikachu.hp = pikachu.maxhp
-                        p = battle("PIKACHU", pika, "wild", 30, 50)
-                        if p == "escape":
-                            pass
-                        if p == "catch":
-                            pass
-                    else:
+            type("(1). Route 101")
+            type("(2). PokeCenter")
+            type("(3). PokeMart")
+            type("(4). Gym *Recommended Level 15*")
+            type("(5). View Pokemon")
+            type("(6). View Backpack")
+            where = int(input("Where Should I Go? "))
+            try:
+                if where > 0 and where < 7:
+                    if where == 1:
+                        wild_random = random.randint(1,10)
+                        if wild_random == 10:
+                            pikachu.hp = pikachu.maxhp
+                            p = battle("PIKACHU", pika, "wild", 30, 50)
+                            if p == "Win":
+                                player.money = player.money + 50
+                            if p == "escape":
+                                pass
+                            if p == "catch":
+                                pass
+                        else:
+                            pidgey_noob.hp = pidgey_noob.maxhp
+                            pi = battle("PIDGEY", pidgey, "wild", 25, 50)
+                            if pi == "Win":
+                                player.money = player.money + 50
+                            if pi == "escape":
+                                pass
+                            if pi == "catch":
+                                pass
+                    elif where == 2:
+                        type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
+                        type("Healed all your Pokemon!\n")
+                        for i in range(0, len(player.pokemon)):
+                            player.pokemon[i].hp = player.pokemon[i].maxhp
+                    elif where == 3:
+                        mart = True
+                        while mart:
+                            type("Welcome to the PokeMart\n")
+                            type("(1). Pokeballs = $200")
+                            type("(2). Potions = $200")
+                            type("(3). Revive = $1000")
+                            type("(4). Exit")
+                            type(f"Your Money: ${player.money}")
+                            buy = int(input("What Should I Buy? "))
+                            try:
+                                if buy >= 0 and buy <= 5:
+                                    if buy == 1:
+                                        if player.money < 200:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Pokeball!")
+                                            player.pokeballs = player.pokeballs + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 2:
+                                        if player.money < 200:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Potion!")
+                                            player.potion = player.potion + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 3:
+                                        if player.money < 1000:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Revive!")
+                                            player.revive = player.revive + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 4:
+                                        mart = False
+                                else:
+                                    print("ERROR: Please choose between 1-4\n")
+                            except ValueError:
+                                print("ERROR: Please choose a number\n")
+                    elif where == 4:
+                        type("Gym Leader Jose: Welcome to my Gym, If you want a badge, you must defeat me in a Pokemon battle!\n")
                         pidgey_noob.hp = pidgey_noob.maxhp
-                        pi = battle("PIDGEY", pidgey, "wild", 25, 50)
-                        if pi == "escape":
-                            pass
-                        if pi == "catch":
-                            pass
-                elif where == 2:
-                    type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
-                    type("Healed all your Pokemon!\n")
-                    for i in range(0, len(player.pokemon)):
-                        player.pokemon[i].hp = player.pokemon[i].maxhp
-                elif where == 3:
-                    mart = True
-                    while mart:
-                        type("Welcome to the PokeMart\n")
-                        type("(1). Pokeballs = $200")
-                        type("(2). Potions = $200")
-                        type("(3). Revive = $1000")
-                        type("(4). Exit")
-                        type(f"Your Money: ${player.money}")
-                        buy = int(input("What Should I Buy? "))
+                        onix.hp = onix.maxhp
+                        jose = battle("GYM LEADER JOSE", gym_jose, "trainer", 200, 1000)
+                        if jose == "Win":
+                            player.money = player.money + 1000
+                            type("Gym Leader Jose: Congratulations, here is the Gym Badge! I wish you the best of luck, if you need help, you can come to me!\n")
+                            type(f"{name}: Thanks Jose!\n")
+                            first = False
+                        if jose == "Lose":
+                            type("Gym Leader Jose: Nice try! You should practice in Route 101 and level up first before you fight me again!\n")
+                    elif where == 5:
                         try:
-                            if buy >= 0 and buy <= 5:
-                                if buy == 1:
-                                    if player.money < 200:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Pokeball!")
-                                        player.pokeballs = player.pokeballs + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 2:
-                                    if player.money < 200:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Potion!")
-                                        player.potion = player.potion + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 3:
-                                    if player.money < 1000:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Revive!")
-                                        player.revive = player.revive + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 4:
-                                    mart = False
-                            else:
-                                print("ERROR: Please choose between 1-4\n")
+                            type("\nYour Pokemon:")
+                            for i in range(1, len(player.pokemon) + 1):
+                                numb = 1 * i
+                                type(f"{numb}. {player.pokemon[i - 1].name}")
+                            check_stat = int(input("\nChoose Your Pokemon To Check Stats!(Number): "))
+                            try:
+                                if check_stat > 0:
+                                    player.pokemon[check_stat - 1].ViewStats()
+                                else:
+                                    print("ERROR: Can't go below 0!\n")
+                            except IndexError:
+                                print("ERROR: Must be in range of your pokemon!\n")
                         except ValueError:
-                            print("ERROR: Please choose a number\n")
-                elif where == 4:
-                    type("Gym Leader Jose: Welcome to my Gym, If you want a badge, you must defeat me in a Pokemon battle!\n")
-                    jose = battle("GYM LEADER JOSE", gym_jose, "trainer", 200, 1000)
-                    if jose == "Win":
-                        type("Gym Leader Jose: Congratulations, here is the Gym Badge! I wish you the best of luck, if you need help, you can come to me!\n")
-                        type(f"{name}: Thanks Jose!\n")
-                        first = False
-                    if jose == "Lose":
-                        type("Gym Leader Jose: Nice try! You should practice in Route 101 and level up first before you fight me again!\n")
-                elif where == 5:
-                    try:
-                        type("\nYour Pokemon:")
-                        for i in range(1, len(player.pokemon) + 1):
-                            numb = 1 * i
-                            type(f"{numb}. {player.pokemon[i - 1].name}")
-                        check_stat = int(input("\nChoose Your Pokemon To Check Stats!(Number): "))
-                        try:
-                            if check_stat > 0:
-                                player.pokemon[check_stat - 1].ViewStats()
-                            else:
-                                print("ERROR: Can't go below 0!\n")
-                        except IndexError:
-                            print("ERROR: Must be in range of your pokemon!\n")
-                    except ValueError:
-                        print("ERROR: Please choose a number!\n")
-                elif where == 6:
-                    player.ViewBackpack()
-            else:
-                print("ERROR: Please choose between 1-7\n")
+                            print("ERROR: Please choose a number!\n")
+                    elif where == 6:
+                        player.ViewBackpack()
+                else:
+                    print("ERROR: Please choose between 1-7\n")
+            except ValueError:
+                print("ERROR: Please choose a number\n")
         except ValueError:
-            print("ERROR: Please choose a number\n")
+            print("ERROR: Please enter correctly")
 
     type("Bobby: Hey, I heard you beat my dad, wow you must be strong!\n")
     type("Bobby: With the Gym Badge, you can probably head to the next city, I think it's called Morning City\n")
@@ -1416,116 +1439,130 @@ def main(name):
     type("Team Rocket Grunt: Hey, You! I heared you stirred some trouble, now I'm here to beat you!\n")
     medium = True
     while medium:
+        onix.hp = onix.maxhp
         med = battle("TEAM ROCKET GRUNT", grunt_med, "trainer", 100, 500)
         if med == "Lose":
             type("Team Rocket Grunt: Hahaha! I knew you were weak!\n")
         if med == "Win":
+            player.money = player.money + 500
             type("Team Rocket Grunt: Huh, you seem strong, but don't worry, we'll rule the world soon!\n")
             medium = False
     type(f"{name}: He ran away... Well, I better head to the next city\n")
     second = True
     while second:
-        type("(1). Route 201")
-        type("(2). PokeCenter")
-        type("(3). PokeMart")
-        type("(4). Gym 2 *Recommended Level 30*")
-        type("(5). View Pokemon")
-        type("(6). View Backpack")
-        where = int(input("Where Should I Go? "))
         try:
-            if where > 0 and where < 7:
-                if where == 1:
-                    wild_random = random.randint(1, 10)
-                    if wild_random == 10:
-                        r = battle("RALTS", ralts, "wild", 80, 100)
-                        if r == "escape":
-                            pass
-                        if r == "catch":
-                            pass
-                    else:
-                        s = battle("SANDSHREW", sandshrew, "wild", 70, 100)
-                        if s == "escape":
-                            pass
-                        if s == "catch":
-                            pass
-                elif where == 2:
-                    type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
-                    for i in range(0, len(player.pokemon) - 1):
-                        player.pokemon[i].hp = player.pokemon[i].maxhp
-                elif where == 3:
-                    mart = True
-                    while mart:
-                        type("Welcome to the PokeMart\n")
-                        type("(1). Pokeballs = $200")
-                        type("(2). Potions = $200")
-                        type("(3). Revive = $1000")
-                        type("(4). Exit")
-                        type(f"Your Money: ${player.money}")
-                        buy = int(input("What Should I Buy? "))
+            type("(1). Route 201")
+            type("(2). PokeCenter")
+            type("(3). PokeMart")
+            type("(4). Gym 2 *Recommended Level 30*")
+            type("(5). View Pokemon")
+            type("(6). View Backpack")
+            where = int(input("Where Should I Go? "))
+            try:
+                if where > 0 and where < 7:
+                    if where == 1:
+                        wild_random = random.randint(1, 10)
+                        if wild_random == 10:
+                            ralt.hp = ralt.maxhp
+                            r = battle("RALTS", ralts, "wild", 80, 100)
+                            if r == "Win":
+                                player.money = player.money + 100
+                            if r == "escape":
+                                pass
+                            if r == "catch":
+                                pass
+                        else:
+                            sands.hp = sands.maxhp
+                            s = battle("SANDSHREW", sandshrew, "wild", 70, 100)
+                            if s == "Win":
+                                player.money = player.money + 100
+                            if s == "escape":
+                                pass
+                            if s == "catch":
+                                pass
+                    elif where == 2:
+                        type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
+                        for i in range(0, len(player.pokemon) - 1):
+                            player.pokemon[i].hp = player.pokemon[i].maxhp
+                    elif where == 3:
+                        mart = True
+                        while mart:
+                            type("Welcome to the PokeMart\n")
+                            type("(1). Pokeballs = $200")
+                            type("(2). Potions = $200")
+                            type("(3). Revive = $1000")
+                            type("(4). Exit")
+                            type(f"Your Money: ${player.money}")
+                            buy = int(input("What Should I Buy? "))
+                            try:
+                                if buy >= 0 and buy <= 5:
+                                    if buy == 1:
+                                        if player.money < 200:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Pokeball!")
+                                            player.pokeballs = player.pokeballs + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 2:
+                                        if player.money < 200:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Potion!")
+                                            player.potion = player.potion + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 3:
+                                        if player.money < 1000:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Revive!")
+                                            player.revive = player.revive + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 4:
+                                        mart = False
+                                else:
+                                    print("ERROR: Please choose between 1-4\n")
+                            except ValueError:
+                                print("ERROR: Please choose a number\n")
+                    elif where == 4:
+                        magikarp.hp = magikarp.maxhp
+                        snorlax.hp = snorlax.maxhp
+                        type("Gym Leader Justin: Welcome to my Gym, If you want a badge, you must defeat me in a Pokemon battle!\n")
+                        justin = battle("GYM LEADER JUSTIN", gym_justin, "trainer", 150, 2500)
+                        if justin == "Win":
+                            player.money = player.money + 2500
+                            type("Gym Leader Justin: Congratulations, here is the Gym Badge!\n")
+                            type("Gym Leader Justin: You should visit Saiyan City, there you can get the final badge and try to defeat the Pokemon Champion")
+                            type(f"{name}: Thanks Justin!\n")
+                            second = False
+                        if justin == "Lose":
+                            type("Gym Leader Jose: Nice try! You should practice in Route 201 and level up first before you fight me again!\n")
+                    elif where == 5:
                         try:
-                            if buy >= 0 and buy <= 5:
-                                if buy == 1:
-                                    if player.money < 200:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Pokeball!")
-                                        player.pokeballs = player.pokeballs + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 2:
-                                    if player.money < 200:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Potion!")
-                                        player.potion = player.potion + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 3:
-                                    if player.money < 1000:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Revive!")
-                                        player.revive = player.revive + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 4:
-                                    mart = False
-                            else:
-                                print("ERROR: Please choose between 1-4\n")
+                            type("\nYour Pokemon:")
+                            for i in range(1, len(player.pokemon) + 1):
+                                numb = 1 * i
+                                type(f"{numb}. {player.pokemon[i - 1].name}")
+                            check_stat = int(input("\nChoose Your Pokemon To Check Stats!(Number): "))
+                            try:
+                                if check_stat > 0:
+                                    player.pokemon[check_stat - 1].ViewStats()
+                                else:
+                                    print("ERROR: Can't go below 0!\n")
+                            except IndexError:
+                                print("ERROR: Must be in range of your pokemon!\n")
                         except ValueError:
-                            print("ERROR: Please choose a number\n")
-                elif where == 4:
-                    type("Gym Leader Justin: Welcome to my Gym, If you want a badge, you must defeat me in a Pokemon battle!\n")
-                    justin = battle("GYM LEADER JUSTIN", gym_justin, "trainer", 150, 2500)
-                    if justin == "Win":
-                        type("Gym Leader Justin: Congratulations, here is the Gym Badge!\n")
-                        type("Gym Leader Justin: You should visit Saiyan City, there you can get the final badge and try to defeat the Pokemon Champion")
-                        type(f"{name}: Thanks Justin!\n")
-                        second = False
-                    if justin == "Lose":
-                        type("Gym Leader Jose: Nice try! You should practice in Route 201 and level up first before you fight me again!\n")
-                elif where == 5:
-                    try:
-                        type("\nYour Pokemon:")
-                        for i in range(1, len(player.pokemon) + 1):
-                            numb = 1 * i
-                            type(f"{numb}. {player.pokemon[i - 1].name}")
-                        check_stat = int(input("\nChoose Your Pokemon To Check Stats!(Number): "))
-                        try:
-                            if check_stat > 0:
-                                player.pokemon[check_stat - 1].ViewStats()
-                            else:
-                                print("ERROR: Can't go below 0!\n")
-                        except IndexError:
-                            print("ERROR: Must be in range of your pokemon!\n")
-                    except ValueError:
-                        print("ERROR: Please choose a number!\n")
-                elif where == 6:
-                    player.ViewBackpack()
-            else:
-                print("ERROR: Please choose between 1-7\n")
+                            print("ERROR: Please choose a number!\n")
+                    elif where == 6:
+                        player.ViewBackpack()
+                else:
+                    print("ERROR: Please choose between 1-7\n")
+            except ValueError:
+                print("ERROR: Please choose a number\n")
         except ValueError:
-            print("ERROR: Please choose a number\n")
+            print("ERROR: Please enter correctly\n")
 
     type("Heading to Route 301...")
     type("...")
@@ -1550,10 +1587,13 @@ def main(name):
     type(f"Team Rocket Leader Dason: That's it! I will defeat you and make you regret interfering with us!\n")
     final_dason = True
     while final_dason:
+        sands.hp = sands.maxhp
+        gengar.hp = gengar.maxhp
         das = battle("TEAM ROCKET LEADER DASON", dason, "trainer", 250, 5000)
         if das == "Lose":
             type(f"Team Rocket Leader Dason: Hahaha! You weakling, now give me Articuno!\n")
         if das == "Win":
+            player.money = player.money + 5000
             type(f"Team Rocket Leader Dason: No. You can't defeat me. How?\n")
             type(f"Team Rocket Leader Dason: Fine! We'll leave you alone!\n")
             final_dason = False
@@ -1564,114 +1604,129 @@ def main(name):
 
     third = True
     while third:
-        type("(1). Route 301")
-        type("(2). PokeCenter")
-        type("(3). PokeMart")
-        type("(4). Gym 3 *Recommended Level 45*")
-        type("(5). View Pokemon")
-        type("(6). View Backpack")
-        where = int(input("Where Should I Go? "))
         try:
-            if where > 0 and where < 7:
-                if where == 1:
-                    wild_random = random.randint(1, 10)
-                    if wild_random == 10:
-                        d = battle("DRAGONAIR", dragonair, "wild", 150, 150)
-                        if d == "escape":
-                            pass
-                        if d == "catch":
-                            pass
-                    elif wild_random >= 5 and wild_random < 10:
-                        m = battle("MAGNEMITE", magnemite, "wild", 100, 150)
-                        if m == "escape":
-                            pass
-                        if m == "catch":
-                            pass
-                    elif wild_random >= 1 and wild_random < 5:
-                        w = battle("WEEZING", weezing, "wild", 100, 150)
-                        if w == "escape":
-                            pass
-                        if w == "catch":
-                            pass
-                elif where == 2:
-                    type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
-                    for i in range(0, len(player.pokemon) - 1):
-                        player.pokemon[i].hp = player.pokemon[i].maxhp
-                elif where == 3:
-                    mart = True
-                    while mart:
-                        type("Welcome to the PokeMart\n")
-                        type("(1). Pokeballs = $200")
-                        type("(2). Potions = $200")
-                        type("(3). Revive = $1000")
-                        type("(4). Exit")
-                        type(f"Your Money: ${player.money}")
-                        buy = int(input("What Should I Buy? "))
-                        try:
-                            if buy >= 0 and buy <= 5:
-                                if buy == 1:
-                                    if player.money < 200:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Pokeball!")
-                                        player.pokeballs = player.pokeballs + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 2:
-                                    if player.money < 200:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Potion!")
-                                        player.potion = player.potion + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 3:
-                                    if player.money < 1000:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Revive!")
-                                        player.revive = player.revive + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 4:
-                                    mart = False
-                            else:
-                                print("ERROR: Please choose between 1-4\n")
-                        except ValueError:
-                            print("ERROR: Please choose a number\n")
-                elif where == 4:
-                    type("Gym Leader Henry: Welcome to my Gym, If you want a badge, you must defeat me in a Pokemon battle!\n")
-                    type("Gym Leader Henry: I heared you defeated Dason, you must be strong! Lets test it!\n")
-                    henry = battle("GYM LEADER HENRY", gym_henry, "trainer", 250, 2500)
-                    if henry == "Win":
-                        type("Gym Leader Henry: Congratulations, here is the Gym Badge! You truly are worthy!\n")
-                        type(f"{name}: Thanks Henry!\n")
-                        third = False
-                    if henry == "Lose":
-                        type("Gym Leader Henry: Nice try! You should practice in Route 201 and level up first before you fight me again!\n")
+            type("(1). Route 301")
+            type("(2). PokeCenter")
+            type("(3). PokeMart")
+            type("(4). Gym 3 *Recommended Level 45*")
+            type("(5). View Pokemon")
+            type("(6). View Backpack")
+            where = int(input("Where Should I Go? "))
+            try:
+                if where > 0 and where < 7:
+                    if where == 1:
+                        wild_random = random.randint(1, 10)
+                        if wild_random == 10:
+                            dair.hp = dair.maxhp
+                            d = battle("DRAGONAIR", dragonair, "wild", 150, 150)
+                            if d == "Win":
+                                player.money = player.money + 150
+                            if d == "escape":
+                                pass
+                            if d == "catch":
+                                pass
+                        elif wild_random >= 5 and wild_random < 10:
+                            magne.hp = magne.maxhp
+                            m = battle("MAGNEMITE", magnemite, "wild", 100, 150)
+                            if m == "Win":
+                                player.money = player.money + 150
+                            if m == "escape":
+                                pass
+                            if m == "catch":
+                                pass
+                        elif wild_random >= 1 and wild_random < 5:
+                            weez.hp = weez.maxhp
+                            w = battle("WEEZING", weezing, "wild", 100, 150)
+                            if w == "Win":
+                                player.money = player.money + 150
+                            if w == "escape":
+                                pass
+                            if w == "catch":
+                                pass
+                    elif where == 2:
+                        type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
+                        for i in range(0, len(player.pokemon) - 1):
+                            player.pokemon[i].hp = player.pokemon[i].maxhp
+                    elif where == 3:
+                        mart = True
+                        while mart:
+                            type("Welcome to the PokeMart\n")
+                            type("(1). Pokeballs = $200")
+                            type("(2). Potions = $200")
+                            type("(3). Revive = $1000")
+                            type("(4). Exit")
+                            type(f"Your Money: ${player.money}")
+                            buy = int(input("What Should I Buy? "))
+                            try:
+                                if buy >= 0 and buy <= 5:
+                                    if buy == 1:
+                                        if player.money < 200:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Pokeball!")
+                                            player.pokeballs = player.pokeballs + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 2:
+                                        if player.money < 200:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Potion!")
+                                            player.potion = player.potion + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 3:
+                                        if player.money < 1000:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Revive!")
+                                            player.revive = player.revive + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 4:
+                                        mart = False
+                                else:
+                                    print("ERROR: Please choose between 1-4\n")
+                            except ValueError:
+                                print("ERROR: Please choose a number\n")
+                    elif where == 4:
+                        type("Gym Leader Henry: Welcome to my Gym, If you want a badge, you must defeat me in a Pokemon battle!\n")
+                        type("Gym Leader Henry: I heared you defeated Dason, you must be strong! Lets test it!\n")
+                        gible.hp = gible.maxhp
+                        lapras.hp = lapras.maxhp
+                        henry = battle("GYM LEADER HENRY", gym_henry, "trainer", 250, 2500)
+                        if henry == "Win":
+                            player.money = player.money + 2500
+                            type("Gym Leader Henry: Congratulations, here is the Gym Badge! You truly are worthy!\n")
+                            type(f"{name}: Thanks Henry!\n")
+                            third = False
+                        if henry == "Lose":
+                            type("Gym Leader Henry: Nice try! You should practice in Route 201 and level up first before you fight me again!\n")
 
-                elif where == 5:
-                    try:
-                        type("\nYour Pokemon:")
-                        for i in range(1, len(player.pokemon) + 1):
-                            numb = 1 * i
-                            type(f"{numb}. {player.pokemon[i - 1].name}")
-                        check_stat = int(input("\nChoose Your Pokemon To Check Stats!(Number): "))
+                    elif where == 5:
                         try:
-                            if check_stat > 0:
-                                player.pokemon[check_stat - 1].ViewStats()
-                            else:
-                                print("ERROR: Can't go below 0!\n")
-                        except IndexError:
-                            print("ERROR: Must be in range of your pokemon!\n")
-                    except ValueError:
-                        print("ERROR: Please choose a number!\n")
-                elif where == 6:
-                    player.ViewBackpack()
-            else:
-                print("ERROR: Please choose between 1-7\n")
+                            type("\nYour Pokemon:")
+                            for i in range(1, len(player.pokemon) + 1):
+                                numb = 1 * i
+                                type(f"{numb}. {player.pokemon[i - 1].name}")
+                            check_stat = int(input("\nChoose Your Pokemon To Check Stats!(Number): "))
+                            try:
+                                if check_stat > 0:
+                                    player.pokemon[check_stat - 1].ViewStats()
+                                else:
+                                    print("ERROR: Can't go below 0!\n")
+                            except IndexError:
+                                print("ERROR: Must be in range of your pokemon!\n")
+                        except ValueError:
+                            print("ERROR: Please choose a number!\n")
+                    elif where == 6:
+                        player.ViewBackpack()
+                else:
+                    print("ERROR: Please choose between 1-7\n")
+            except ValueError:
+                print("ERROR: Please choose a number\n")
         except ValueError:
-            print("ERROR: Please choose a number\n")
+            print("ERROR: Please enter correctly\n")
 
     type(f"Heading to Victory Road...")
     type(f"...")
@@ -1684,115 +1739,131 @@ def main(name):
 
     finaL_ash = True
     while finaL_ash:
-        type("(1). Route 301")
-        type("(2). PokeCenter")
-        type("(3). PokeMart")
-        type("(4). Final Battle Against Ash *Recommended Level 60*")
-        type("(5). View Pokemon")
-        type("(6). View Backpack")
-        where = int(input("Where Should I Go? "))
         try:
-            if where > 0 and where < 7:
-                if where == 1:
-                    wild_random = random.randint(1, 10)
-                    if wild_random == 10:
-                        dd = battle("DRAGONAIR", dragonair, "wild", 200, 250)
-                        if dd == "escape":
-                            pass
-                        if dd == "catch":
-                            pass
-                    elif wild_random >= 5 and wild_random < 10:
-                        mm = battle("MAGNEMITE", magnemite, "wild", 150, 250)
-                        if mm == "escape":
-                            pass
-                        if mm == "catch":
-                            pass
-                    elif wild_random >= 1 and wild_random < 5:
-                        ww = battle("WEEZING", weezing, "wild", 150, 250)
-                        if ww == "escape":
-                            pass
-                        if ww == "catch":
-                            pass
-                elif where == 2:
-                    type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
-                    for i in range(0, len(player.pokemon) - 1):
-                        player.pokemon[i].hp = player.pokemon[i].maxhp
-                elif where == 3:
-                    mart = True
-                    while mart:
-                        type("Welcome to the PokeMart\n")
-                        type("(1). Pokeballs = $200")
-                        type("(2). Potions = $200")
-                        type("(3). Revive = $1000")
-                        type("(4). Exit")
-                        type(f"Your Money: ${player.money}")
-                        buy = int(input("What Should I Buy? "))
-                        try:
-                            if buy >= 0 and buy <= 5:
-                                if buy == 1:
-                                    if player.money < 200:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Pokeball!")
-                                        player.pokeballs = player.pokeballs + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 2:
-                                    if player.money < 200:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Potion!")
-                                        player.potion = player.potion + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 3:
-                                    if player.money < 1000:
-                                        type("You can't afford that yet!\n")
-                                    else:
-                                        type("Thankyou for purchasing a Revive!")
-                                        player.revive = player.revive + 1
-                                        player.money = player.money - 200
-                                        type(f"Money left: {player.money}")
-                                elif buy == 4:
-                                    mart = False
-                            else:
-                                print("ERROR: Please choose between 1-4\n")
-                        except ValueError:
-                            print("ERROR: Please choose a number\n")
-                elif where == 4:
-                    type(f"Pokemon Champion Ash: You like my title? Haha! Let's see if you can win against me!\n")
-                    ashh = battle("POKEMON CHAMPION ASH", champion_ash, "trainer", 1000, 10000)
-                    if ashh == "Win":
-                        type("Pokemon Champion Ash: Wow, you won, this is surprising...\n")
-                        type("Pokemon Champion Ash: I guess you are the new Pokemon Champ!\n")
-                        type(f"Title Added: Pokemon Champion {name}!\n")
-                        type(f"Pokemon Champion {name}: I Did it!!\n")
-                        finaL_ash = False
-                    if ashh == "Lose":
-                        type("Pokemon Champion Ash: Nice try! You should practice in Route 201 and level up first before you fight me again!\n")
+            type("(1). Route 301")
+            type("(2). PokeCenter")
+            type("(3). PokeMart")
+            type("(4). Final Battle Against Ash *Recommended Level 60*")
+            type("(5). View Pokemon")
+            type("(6). View Backpack")
+            where = int(input("Where Should I Go? "))
+            try:
+                if where > 0 and where < 7:
+                    if where == 1:
+                        wild_random = random.randint(1, 10)
+                        if wild_random == 10:
+                            dair.hp = dair.maxhp
+                            dd = battle("DRAGONAIR", dragonair, "wild", 200, 250)
+                            if dd == "Win":
+                                player.money = player.money + 250
+                            if dd == "escape":
+                                pass
+                            if dd == "catch":
+                                pass
+                        elif wild_random >= 5 and wild_random < 10:
+                            magne.hp = magne.maxhp
+                            mm = battle("MAGNEMITE", magnemite, "wild", 150, 250)
+                            if mm == "Win":
+                                player.money = player.money + 250
+                            if mm == "escape":
+                                pass
+                            if mm == "catch":
+                                pass
+                        elif wild_random >= 1 and wild_random < 5:
+                            weez.hp = weez.maxhp
+                            ww = battle("WEEZING", weezing, "wild", 150, 250)
+                            if ww == "Win":
+                                player.money = player.money + 250
+                            if ww == "escape":
+                                pass
+                            if ww == "catch":
+                                pass
+                    elif where == 2:
+                        type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
+                        for i in range(0, len(player.pokemon) - 1):
+                            player.pokemon[i].hp = player.pokemon[i].maxhp
+                    elif where == 3:
+                        mart = True
+                        while mart:
+                            type("Welcome to the PokeMart\n")
+                            type("(1). Pokeballs = $200")
+                            type("(2). Potions = $200")
+                            type("(3). Revive = $1000")
+                            type("(4). Exit")
+                            type(f"Your Money: ${player.money}")
+                            buy = int(input("What Should I Buy? "))
+                            try:
+                                if buy >= 0 and buy <= 5:
+                                    if buy == 1:
+                                        if player.money < 200:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Pokeball!")
+                                            player.pokeballs = player.pokeballs + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 2:
+                                        if player.money < 200:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Potion!")
+                                            player.potion = player.potion + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 3:
+                                        if player.money < 1000:
+                                            type("You can't afford that yet!\n")
+                                        else:
+                                            type("Thankyou for purchasing a Revive!")
+                                            player.revive = player.revive + 1
+                                            player.money = player.money - 200
+                                            type(f"Money left: {player.money}")
+                                    elif buy == 4:
+                                        mart = False
+                                else:
+                                    print("ERROR: Please choose between 1-4\n")
+                            except ValueError:
+                                print("ERROR: Please choose a number\n")
+                    elif where == 4:
+                        type(f"Pokemon Champion Ash: You like my title? Haha! Let's see if you can win against me!\n")
+                        pikachu_pro.hp = pikachu_pro.maxhp
+                        pidgeot.hp = pidgeot.maxhp
+                        dragonite.hp = dragonite.maxhp
+                        ashh = battle("POKEMON CHAMPION ASH", champion_ash, "trainer", 1000, 10000)
+                        if ashh == "Win":
+                            player.money = player.money + 10000
+                            type("Pokemon Champion Ash: Wow, you won, this is surprising...\n")
+                            type("Pokemon Champion Ash: I guess you are the new Pokemon Champ!\n")
+                            type(f"Title Added: Pokemon Champion {name}!\n")
+                            type(f"Pokemon Champion {name}: I Did it!!\n")
+                            finaL_ash = False
+                        if ashh == "Lose":
+                            type("Pokemon Champion Ash: Nice try! You should practice in Route 201 and level up first before you fight me again!\n")
 
-                elif where == 5:
-                    try:
-                        type("\nYour Pokemon:")
-                        for i in range(1, len(player.pokemon) + 1):
-                            numb = 1 * i
-                            type(f"{numb}. {player.pokemon[i - 1].name}")
-                        check_stat = int(input("\nChoose Your Pokemon To Check Stats!(Number): "))
+                    elif where == 5:
                         try:
-                            if check_stat > 0:
-                                player.pokemon[check_stat - 1].ViewStats()
-                            else:
-                                print("ERROR: Can't go below 0!\n")
-                        except IndexError:
-                            print("ERROR: Must be in range of your pokemon!\n")
-                    except ValueError:
-                        print("ERROR: Please choose a number!\n")
-                elif where == 6:
-                    player.ViewBackpack()
-            else:
-                print("ERROR: Please choose between 1-7\n")
+                            type("\nYour Pokemon:")
+                            for i in range(1, len(player.pokemon) + 1):
+                                numb = 1 * i
+                                type(f"{numb}. {player.pokemon[i - 1].name}")
+                            check_stat = int(input("\nChoose Your Pokemon To Check Stats!(Number): "))
+                            try:
+                                if check_stat > 0:
+                                    player.pokemon[check_stat - 1].ViewStats()
+                                else:
+                                    print("ERROR: Can't go below 0!\n")
+                            except IndexError:
+                                print("ERROR: Must be in range of your pokemon!\n")
+                        except ValueError:
+                            print("ERROR: Please choose a number!\n")
+                    elif where == 6:
+                        player.ViewBackpack()
+                else:
+                    print("ERROR: Please choose between 1-7\n")
+            except ValueError:
+                print("ERROR: Please choose a number\n")
         except ValueError:
-            print("ERROR: Please choose a number\n")
+            print("ERROR: Please choose correctly\n")
 
     type("Professor Oak: Ah, good to see you two\n")
     type(f"Professor Oak: Congratulations {name}, or should I say Pokemon Champion {name}\n")
