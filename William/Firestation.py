@@ -7,11 +7,7 @@ personnel = [12, 13, 23, 44, 23, 11, 43]
 fire_duty = fire_station
 
 # Finding the understaffed station
-min = personnel[0]
-for m in range(7):
-    if min >= personnel[m]:
-        min = personnel[m]
-        understaffed = fire_station[m]
+p
 
 # Main Loop
 i = 0
