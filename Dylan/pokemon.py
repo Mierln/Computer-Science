@@ -585,7 +585,7 @@ dragonite.moves = [twister, dragonrush, dragonbreath, outrage]
 player = Trainer()
 player.name = ""
 player.pokemon = []
-player.pokeballs = 100
+player.pokeballs = 1
 player.potion = 1
 player.revive = 1
 player.money = 100
@@ -628,7 +628,7 @@ def type(text):
     for letter in text:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.05)
+        time.sleep(0)
     print()
 
 
@@ -686,8 +686,8 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                 print("ERROR: Please pick 1-4!\n")
             elif what_do == 1:
                 try:
-                    for i in range(1, len(mc_poke.moves) + 1):
-                        number = 1 * i
+                    for i in range(0, len(mc_poke.moves)):
+                        number = 1 + i
                         type(f"{number}. {mc_poke.moves[i - 1].name} ({mc_poke.moves[i - 1].typ})")
                     move = int(input("\nSelect Your Moves: "))
                     move = move - 1
