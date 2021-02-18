@@ -7,7 +7,7 @@ def writen(text):
     for letter in text:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.05)
+        time.sleep(0.02)
 
 
 def title():

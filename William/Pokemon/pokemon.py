@@ -156,7 +156,7 @@ def player1_turn(player, pokemon1, pokemon2):
             elif user_chose == 3:
                 if pokemon2.wild and player.pokeball > 0:
                     chance = round(100 / (pokemon2.max_hp / pokemon2.hp))
-                    if random.randint(0, 75) > chance:
+                    if random.randint(0, 85) > chance:
                         pokemon2.attacks = []
                         pokemon2.hp = pokemon2.max_hp
                         for _ in range(round(pokemon2.lvl/3)):
@@ -401,17 +401,25 @@ def main():
                     print("")
                     print("1. Pokeballs - 200 Golds")
                     print("2. Potions - 50 Golds")
-                    print("3. Quit")
+                    print("3. Leave Market")
                     try:
                         buy = int(input("Buy? "))
-                        if buy == 1:
+                        if buy == 1 and player.money >= 200:
                             print(Fore.CYAN + "\nYou have bought 1 pokeball for 200 golds\n" + Fore.RESET)
                             player.pokeball += 1
                             player.money -= 200
-                        elif buy == 2:
+                        elif buy == 1 and player.money < 200:
+                            print(
+                                Fore.WHITE + Back.RED + Style.BRIGHT + "\nYou don't have enough money" + Style.RESET_ALL+
+                                "\n")
+                        elif buy == 2 and player.money >= 50:
                             print(Fore.CYAN + "\nYou have bought 1 potion for 50 golds\n" + Fore.RESET)
                             player.potions += 1
                             player.money -= 50
+                        elif buy == 2 and player.money < 50:
+                            print(
+                                Fore.WHITE + Back.RED + Style.BRIGHT + "\nYou don't have enough money" + Style.RESET_ALL+
+                                "\n")
                         elif buy == 3:
                             break
                         else:
