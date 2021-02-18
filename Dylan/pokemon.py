@@ -585,7 +585,7 @@ dragonite.moves = [twister, dragonrush, dragonbreath, outrage]
 player = Trainer()
 player.name = ""
 player.pokemon = []
-player.pokeballs = 1
+player.pokeballs = 100
 player.potion = 1
 player.revive = 1
 player.money = 100
@@ -628,7 +628,7 @@ def type(text):
     for letter in text:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0)
+        time.sleep(0.05)
     print()
 
 
@@ -664,7 +664,10 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
     type(f"{player.name}: Go {mc_poke.name}!\n")
     type(f"{enemy.name}: Go {enemy_poke.name}!\n")
     fight = True
+    win = False
     bruh = 0
+    run = False
+    catch = False
 
     while fight:
         what_to_do = True
@@ -766,9 +769,9 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                                     rando = random.randint(1,2)
                                     if rando == 1:
                                         type(f"You successfully captured a wild {enemy_poke.name}")
-                                        player.pokemon.append(enemy_poke.pokemon[0])
+                                        player.pokemon.append(enemy.pokemon[0])
+                                        return
                                         fight = False
-                                        catch = True
                                     else:
                                         type(f"{enemy_poke.name} broke free!")
                                         what_to_do = False
@@ -776,9 +779,9 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                                     rand = random.randint(1, 10)
                                     if rand == 1:
                                         type(f"You successfully captured a wild {enemy_poke.name}")
-                                        player.pokemon.append(enemy_poke.pokemon[0])
+                                        player.pokemon.append(enemy.pokemon[0])
+                                        return
                                         fight = False
-                                        catch = True
                                     else:
                                         type(f"{enemy_poke.name} broke free!")
                                         what_to_do = False
@@ -843,8 +846,7 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                 elif trainer_or_wild == "wild":
                     type("Escaped Successfully!\n")
                     fight = False
-                    run = True
-
+                    return
         else:
             #Enemy attack
             abcd = len(enemy_poke.moves) - 1
@@ -865,7 +867,7 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                 type(f"{mc_poke.name} has been knocked out!\n")
                 for i in range(0, len(player.pokemon)):
                     if player.pokemon[i].status == "Dead":
-                        type("All your Pokemon has been knocked out...\n")
+                        type("Oh no, one of your Pokemon has been knocked out...\n")
                         type("You lose and black out...\n")
                         type("...\n")
                         type("Your Pokemon got healed!\n")
@@ -877,6 +879,11 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
         type("You won!")
         type(f"You got ${money}!\n")
         player.money = player.money + money
+        type("You got a free healing!\n")
+        for i in range(0, len(player.pokemon)):
+            player.pokemon[i].hp = player.pokemon[i].maxhp
+        for a in range(0, len(enemy.pokemon)):
+            enemy.pokemon[a].hp = enemy.pokemon[a].maxhp
 
 
 def levelup(poke):
@@ -1307,12 +1314,23 @@ def main(name):
                 if where == 1:
                     wild_random = random.randint(1,10)
                     if wild_random == 10:
-                        battle("PIKACHU", pika, "wild", 30, 50)
+                        pikachu.hp = pikachu.maxhp
+                        p = battle("PIKACHU", pika, "wild", 30, 50)
+                        if p == "escape":
+                            pass
+                        if p == "catch":
+                            pass
                     else:
-                        battle("PIDGEY", pidgey, "wild", 25, 50)
+                        pidgey_noob.hp = pidgey_noob.maxhp
+                        pi = battle("PIDGEY", pidgey, "wild", 25, 50)
+                        if pi == "escape":
+                            pass
+                        if pi == "catch":
+                            pass
                 elif where == 2:
                     type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
-                    for i in range(0, len(player.pokemon) - 1):
+                    type("Healed all your Pokemon!\n")
+                    for i in range(0, len(player.pokemon)):
                         player.pokemon[i].hp = player.pokemon[i].maxhp
                 elif where == 3:
                     mart = True
@@ -1419,9 +1437,17 @@ def main(name):
                 if where == 1:
                     wild_random = random.randint(1, 10)
                     if wild_random == 10:
-                        battle("RALTS", ralts, "wild", 80, 100)
+                        r = battle("RALTS", ralts, "wild", 80, 100)
+                        if r == "escape":
+                            pass
+                        if r == "catch":
+                            pass
                     else:
-                        battle("SANDSHREW", sandshrew, "wild", 70, 100)
+                        s = battle("SANDSHREW", sandshrew, "wild", 70, 100)
+                        if s == "escape":
+                            pass
+                        if s == "catch":
+                            pass
                 elif where == 2:
                     type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
                     for i in range(0, len(player.pokemon) - 1):
@@ -1550,11 +1576,23 @@ def main(name):
                 if where == 1:
                     wild_random = random.randint(1, 10)
                     if wild_random == 10:
-                        battle("DRAGONAIR", dragonair, "wild", 150, 150)
+                        d = battle("DRAGONAIR", dragonair, "wild", 150, 150)
+                        if d == "escape":
+                            pass
+                        if d == "catch":
+                            pass
                     elif wild_random >= 5 and wild_random < 10:
-                        battle("MAGNEMITE", magnemite, "wild", 100, 150)
+                        m = battle("MAGNEMITE", magnemite, "wild", 100, 150)
+                        if m == "escape":
+                            pass
+                        if m == "catch":
+                            pass
                     elif wild_random >= 1 and wild_random < 5:
-                        battle("WEEZING", weezing, "wild", 100, 150)
+                        w = battle("WEEZING", weezing, "wild", 100, 150)
+                        if w == "escape":
+                            pass
+                        if w == "catch":
+                            pass
                 elif where == 2:
                     type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
                     for i in range(0, len(player.pokemon) - 1):
@@ -1658,11 +1696,23 @@ def main(name):
                 if where == 1:
                     wild_random = random.randint(1, 10)
                     if wild_random == 10:
-                        battle("DRAGONAIR", dragonair, "wild", 200, 250)
+                        dd = battle("DRAGONAIR", dragonair, "wild", 200, 250)
+                        if dd == "escape":
+                            pass
+                        if dd == "catch":
+                            pass
                     elif wild_random >= 5 and wild_random < 10:
-                        battle("MAGNEMITE", magnemite, "wild", 150, 250)
+                        mm = battle("MAGNEMITE", magnemite, "wild", 150, 250)
+                        if mm == "escape":
+                            pass
+                        if mm == "catch":
+                            pass
                     elif wild_random >= 1 and wild_random < 5:
-                        battle("WEEZING", weezing, "wild", 150, 250)
+                        ww = battle("WEEZING", weezing, "wild", 150, 250)
+                        if ww == "escape":
+                            pass
+                        if ww == "catch":
+                            pass
                 elif where == 2:
                     type("Welcome to the PokeCenter, let me heal your Pokemon!\n")
                     for i in range(0, len(player.pokemon) - 1):
