@@ -703,6 +703,8 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                             damage = round((mc_poke.lvl + mc_poke.atk + mc_poke.moves[move - 1].power - (enemy_poke.defn - 30)) / 6 * crit * eff)
                             enemy_poke.hp = enemy_poke.hp - damage
                             type(f"{mc_poke.name} did {damage} damage!\n")
+                        else:
+                            type("Miss!\n")
                             if enemy_poke.hp <= 0:
                                 enemy_poke.status = "Dead"
                                 type(f"{enemy_poke.name} has been knocked out!")
@@ -862,6 +864,8 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                 damag = round((enemy_poke.lvl + enemy_poke.atk + enemy_poke.moves[abc].power - (mc_poke.defn - 35)) / 6 * crit * effec)
                 mc_poke.hp = mc_poke.hp - damag
                 type(f"Enemy {enemy_poke.name} did {damag} damage!\n")
+            else:
+                type("Miss!\n")
             if mc_poke.hp <= 0:
                 mc_poke.status = "Dead"
                 type(f"{mc_poke.name} has been knocked out!\n")
