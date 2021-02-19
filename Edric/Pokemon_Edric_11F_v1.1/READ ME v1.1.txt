@@ -1,0 +1,3 @@
+v1.1 - Better UI + Minor bug fixes
+
+- Edric
