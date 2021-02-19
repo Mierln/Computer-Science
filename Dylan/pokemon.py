@@ -703,8 +703,6 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                             damage = round((mc_poke.lvl + mc_poke.atk + mc_poke.moves[move - 1].power - (enemy_poke.defn - 30)) / 6 * crit * eff)
                             enemy_poke.hp = enemy_poke.hp - damage
                             type(f"{mc_poke.name} did {damage} damage!\n")
-                        else:
-                            type("Miss!\n")
                             if enemy_poke.hp <= 0:
                                 enemy_poke.status = "Dead"
                                 type(f"{enemy_poke.name} has been knocked out!")
@@ -807,10 +805,12 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                                     if player.pokemon[pot - 1].hp > round(player.pokemon[pot - 1].maxhp *0.5):
                                         player.pokemon[pot - 1].hp = player.pokemon[pot - 1].maxhp
                                         type(f"{player.pokemon[pot - 1].name} healed by half its health!\n")
+                                        player.potion = player.potion - 1
                                         what_to_do = False
                                     else:
                                         player.pokemon[pot - 1].hp = round(player.pokemon[pot - 1].maxhp *0.5) + player.pokemon[pot - 1].hp
                                         type(f"{player.pokemon[pot - 1].name} healed by half health!")
+                                        player.potion = player.potion - 1
                                         what_to_do = False
                             except IndexError:
                                 print("ERROR: Must be in range of your pokemon!\n")
@@ -865,7 +865,7 @@ def battle(enemy_name, enemy, trainer_or_wild, xp, money):
                 mc_poke.hp = mc_poke.hp - damag
                 type(f"Enemy {enemy_poke.name} did {damag} damage!\n")
             else:
-                type("Miss!\n")
+                type(f"{enemy_poke.name} tried to use {enemy_poke.moves[move - 1].name} but missed!\n")
             if mc_poke.hp <= 0:
                 mc_poke.status = "Dead"
                 type(f"{mc_poke.name} has been knocked out!\n")
